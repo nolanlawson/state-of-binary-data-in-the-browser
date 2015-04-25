@@ -1,7 +1,8 @@
 The state of binary data in the browser
 ====
 
-Or: **"So you wanna store a Blob, huh?"**
+Or: "So you wanna store a Blob, huh?"
+-----
 
 ### TLDR
 
