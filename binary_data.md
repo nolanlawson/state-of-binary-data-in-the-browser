@@ -67,3 +67,12 @@ That being said, these two have bugs related to the Blob/FileReader APIs themsel
 IE doesn't have `FileReader.prototype.readAsBinaryString` (only `readAsArrayBuffer`), so if you want to convert a Blob to a binary string or a base64 string most efficiently, you want to use `readAsBinaryString` everywhere but IE.
 
 Firefox, conversely, doesn't have the `canvas.toBlob` method, so if you want to convert a `canvas` to a Blob, you need to use `canvas.toDataURL` and convert the dataURL to a Blob instead. `blob-util` does this all under the hood.
+
+More resources
+---
+
+A lot of this is documented in [the PouchDB FAQs](http://pouchdb.com/faq.html#data_types), [the PouchDB 3.0.6 release notes](http://pouchdb.com/2014/09/22/3.0.6.html), and ["10 things I learned from reading and writing the PouchDB source"](http://pouchdb.com/2014/10/26/10-things-i-learned-from-reading-and-writing-the-pouchdb-source.html).  More research on browser storage can be found [in this gist](https://gist.github.com/janl/d8efa4e404072037f7e0).
+
+I'm not aware of any database library that stores Blobs as efficiently or in as many browsers as PouchDB. You can even use [the localstorage adapter](http://pouchdb.com/adapters.html#pouchdb_in_the_browser) to store Blobs that way (in which case they will be inefficiently base64-encoded). And the proof is in the pudding: [the PouchDB test suite is insane](https://travis-ci.org/pouchdb/pouchdb/).
+
+If you think your libary does support Blobs as well as PouchDB, please let me know in the comments. :)
