@@ -16,7 +16,7 @@ I know it's 2015, and Blobs/IndexedDB should be universally supported already. B
 
 Browser have three ways of storing data: [LocalStorage](http://caniuse.com/#feat=namevalue-storage), [WebSQL](http://caniuse.com/#feat=sql-storage), and [IndexedDB](http://caniuse.com/#feat=indexeddb). They all suck for different reasons, which is why there are so many abstraction layers out there: PouchDB, YDN-DB, LocalForage, Lawnchair, MakeDrive, etc.
 
-Browsers don't consistently handle Blobs either. The [caniuse.com page for Blobs](http://caniuse.com/#search=blob) is a bit disingenuous; really IE and Firefox should be yellowy-green, because they don't consistently support the `canvas` and `FileReader` methods. Blobs in Chrome also have severe bugs before v43.
+Browsers don't consistently handle Blobs either. The [caniuse.com page for Blobs](http://caniuse.com/#search=blob) is a bit disingenuous; really IE and Firefox should be yellowy-green, because they don't consistently support all the `canvas` and `FileReader` methods. Blobs in Chrome also have severe bugs before v43.
 
 LocalStorage
 ----
