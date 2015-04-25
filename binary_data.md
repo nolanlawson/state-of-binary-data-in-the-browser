@@ -41,7 +41,7 @@ Supports both IndexedDB and WebSQL. Chrome originally got IndexedDB in v23.
 * **pre-v36:** Chrome didn't support Blobs at all, so PouchDB (and most other libs like LocalForage) work around this by storing data as base64-encoded strings. Note this includes Android up to Lollipop 5.0. ([Chromium issue](https://code.google.com/p/chromium/issues/detail?id=108012))
 * **v37:** Chrome introduced broken support for Blobs ([issue](https://code.google.com/p/chromium/issues/detail?id=408120)). It was broken because the mimetype wasn't correctly returned.
 * **v38:** The mimetype bug was fixed in v38, but Chrome had two more Blob/IndexedDB bugs: [this one](https://code.google.com/p/chromium/issues/detail?id=447916) and [this one](https://code.google.com/p/chromium/issues/detail?id=447836). The second one in particular was a race condition causing data to be permanently unreadable, which was a big enough blocker that PouchDB continued downgrading Chrome to base64-only.
-* **v43:** Chrome finally fixed all Blob bugs, so PouchDB auto-detects it and upgrades Chrome to Blobs ([test it out here](http://bl.ocks.org/nolanlawson/38e3cd6705f50b074566)).
+* **v43:** Chrome finally fixed all Blob bugs, so PouchDB auto-detects it and upgrades to Blobs ([test it out here](http://bl.ocks.org/nolanlawson/38e3cd6705f50b074566)).
 
 Android
 ----
