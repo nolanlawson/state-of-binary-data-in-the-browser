@@ -34,11 +34,11 @@ Chrome
 
 Supports both IndexedDB and WebSQL. Chrome originally got IndexedDB in v23.
 
-**WebSQL** doesn't support storing Blobs themselves, only strings. You can store binary strings directly, which is the most efficient, but then [the `'\u0000'` character causes data to get lost](https://code.google.com/p/chromium/issues/detail?id=422690). PouchDB works around this by eliminating the `'\u0000'` in [a safe and very efficient way](https://github.com/pouchdb/pouchdb/pull/2900).
+**WebSQL** doesn't support storing Blobs themselves, only strings. You can store binary strings directly, which is the most efficient, but then [the `'\u0000'` byte causes data to get lost](https://code.google.com/p/chromium/issues/detail?id=422690). PouchDB works around this by eliminating the `'\u0000'` in [a safe and very efficient way](https://github.com/pouchdb/pouchdb/pull/2900).
 
-**IndexedDB** has many binary bugs in Chrome. Here's the history:
+**IndexedDB** has many Blob bugs in Chrome. Here's the history:
 
-* **pre-v36:** Chrome didn't support Blobs at all, so PouchDB (and most other libs like LocalForage) work around this by storing data as base64-encoded strings. Note this includes Android up to Lollipop 5.0. ([Chromium issue](https://code.google.com/p/chromium/issues/detail?id=108012))
+* **pre-v36:** Chrome didn't support IndexedDB Blobs at all, so PouchDB (and most other libs like LocalForage) work around this by storing data as base64-encoded strings. Note this also includes Android up to Lollipop 5.0. ([Chromium issue](https://code.google.com/p/chromium/issues/detail?id=108012))
 * **v37:** Chrome introduced broken support for Blobs ([issue](https://code.google.com/p/chromium/issues/detail?id=408120)). It was broken because the mimetype wasn't correctly returned.
 * **v38:** The mimetype bug was fixed in v38, but Chrome had two more Blob/IndexedDB bugs: [this one](https://code.google.com/p/chromium/issues/detail?id=447916) and [this one](https://code.google.com/p/chromium/issues/detail?id=447836). The second one in particular was a race condition causing data to be permanently unreadable, which was a big enough blocker that PouchDB continued downgrading Chrome to base64-only.
 * **v43:** Chrome finally fixed all Blob bugs, so PouchDB auto-detects it and upgrades to Blobs ([test it out here](http://bl.ocks.org/nolanlawson/38e3cd6705f50b074566)).
@@ -46,11 +46,13 @@ Supports both IndexedDB and WebSQL. Chrome originally got IndexedDB in v23.
 Android
 ----
 
-Android didn't support IndexedDB until 4.4 Kitkat, and as of this writing, [more than half of Android devices are still pre-Kitkat](https://developer.android.com/about/dashboards/index.html). Some Samsung/HTC Android 4.3 devices have [a broken implementation of IndexedDB](https://github.com/pouchdb/pouchdb/issues/1207) based on an older version of the spec. PouchDB detects this and falls back to WebSQL.
+Android didn't support IndexedDB until 4.4 Kitkat, and as of this writing, [more than half of all Android devices are still pre-Kitkat](https://developer.android.com/about/dashboards/index.html). Some Samsung/HTC Android 4.3 devices have [a broken implementation of IndexedDB](https://github.com/pouchdb/pouchdb/issues/1207) based on an older version of the spec. PouchDB detects this and falls back to WebSQL.
 
-Additionally, many pre-4.4 devices don't support Blobs correctly - either they're using vendor prefixes like `window.webkitURL` or they use the deprecated `BlobBuilder` API. blob-util works around all these issues.
+Additionally, many pre-4.4 devices don't support Blobs correctly - either they're using vendor prefixes like `window.webkitURL` or they use the deprecated `BlobBuilder` API. [blob-util](https://github.com/nolanlawson/blob-util) works around all these issues.
 
-4.4 Kitkat devices will either have Chrome 30 or Chrome 33 depending on whether it's 4.4.0-4.4.1 or 4.4.2+. Lollipop is auto-updating; it debuted with Chrome v37 and is up to v42 as of this writing.
+4.4 Kitkat devices will either have Chrome 30 or Chrome 33, depending on whether it's 4.4.0-4.4.1 or 4.4.2+. Lollipop is auto-updating; it debuted with Chrome v37 and is up to v42 as of this writing.
+
+Note this applies to WebViews (i.e. Cordova/PhoneGap apps), the stock browser, and most of the non-Chrome/non-Firefox browsers you'll find in the Play Store, since they just wrap a WebView (e.g. [CM Browser](https://play.google.com/store/apps/details?id=com.ksmobile.cb), [Dolphin Browser](https://play.google.com/store/apps/details?id=mobi.mgeek.TunnyBrowser), and [Link Bubble](https://play.google.com/store/apps/details?id=com.linkbubble.playstore)).
 
 Safari/iOS
 ---
