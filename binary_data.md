@@ -1,14 +1,15 @@
 The state of binary data in the browser
 ====
 
-Or "so you wanna store a Blob, huh?"
------
+Or: **"So you wanna store a Blob, huh?"**
 
-**TLDR**: Don't try to directly store Blobs in IndexedDB, unless you want to cry. Browsers still suck at it. 
+### TLDR
+
+Don't try to directly store Blobs in IndexedDB, unless you want to cry. Browsers still suck at it. 
 
 [PouchDB](https://github.com/pouchdb/pouchdb) and [blob-util](https://github.com/nolanlawson/blob-util) can work around all the bugs for you.
 
-**Long version:**
+### Long version
 
 I know it's 2015, and Blobs/IndexedDB should be universally supported already. But sadly they're not, so here's the sorry state of things.
 
