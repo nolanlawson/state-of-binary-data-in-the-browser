@@ -57,7 +57,7 @@ Safari/iOS
 
 **WebSQL:** Safari WebSQL has [the same '\u0000' bug as Chrome](https://bugs.webkit.org/show_bug.cgi?id=137637) (on both iOS and desktop), as well as another bug that affects Safari pre-v7.1 and iOS pre-8.0 where all data is coerced to UTF-16 instead of UTF-8, meaning it takes up twice the space. PouchDB detects UTF-16 UTF-8 encoding and [reacts accordingly](https://github.com/pouchdb/pouchdb/pull/1733#issuecomment-38723096).
 
-**IndexedDB:** The less said about Safari IndexedDB, the better. It [is so buggy](http://www.raymondcamden.com/2014/09/25/IndexedDB-on-iOS-8-Broken-Bad) that PouchDB, LocalForage, and YDN-DB all ignore it. For what it's worth, though, it doesn't support binary Blobs [according to HTML5Test.com](http://html5test.com/compare/browser/safari-8.0.html).
+**IndexedDB:** The less said about Safari IndexedDB, the better. It is [so buggy](http://www.raymondcamden.com/2014/09/25/IndexedDB-on-iOS-8-Broken-Bad) that PouchDB, LocalForage, and YDN-DB all ignore it. For what it's worth, though, it doesn't support binary Blobs [according to HTML5Test.com](http://html5test.com/compare/browser/safari-8.0.html).
 
 IE/Firefox
 ----
