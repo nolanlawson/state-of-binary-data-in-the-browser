@@ -18,6 +18,8 @@ Browser have three ways of storing data: [LocalStorage](http://caniuse.com/#feat
 
 Browsers don't consistently handle Blobs either. The [caniuse.com page for Blobs](http://caniuse.com/#search=blob) is a bit disingenuous; really IE and Firefox should be yellowy-green, because they don't consistently support all the `canvas` and `FileReader` methods. Blobs in Chrome also have severe bugs before v43.
 
+So let's see all the different browsers and storage engines, and how they stack up:
+
 LocalStorage
 ----
 
