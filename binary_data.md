@@ -62,7 +62,7 @@ Safari/iOS
 IE/Firefox
 ----
 
-Neither one support WebSQL, but they're actually both great about supporting Blobs in IndexedDB. IE10 supports Blobs in IndexedDB without breaking a sweat, and Firefox has had them [since 2011](https://bugzilla.mozilla.org/show_bug.cgi?id=661877).
+Neither one support WebSQL, but they're actually both great about storing Blobs in IndexedDB. IE has supported Blobs since it introduced IndexedDB in v10, and Firefox has had them [since 2011](https://bugzilla.mozilla.org/show_bug.cgi?id=661877).
 
 That being said, these two have bugs related to the Blob/FileReader APIs themselves:
 
