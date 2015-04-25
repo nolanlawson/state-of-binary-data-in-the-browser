@@ -46,7 +46,7 @@ Supports both IndexedDB and WebSQL. Chrome originally got IndexedDB in v23.
 Android
 ----
 
-Android didn't support IndexedDB until 4.4 Kitkat, and as of this writing, [more than half of Android devices are still pre-Kitkat](https://developer.android.com/about/dashboards/index.html). Some Samsung/HTC Android 4.3 devices have a broken version of IndexedDB based on an older version of the spec. PouchDB detects this and falls back to WebSQL.
+Android didn't support IndexedDB until 4.4 Kitkat, and as of this writing, [more than half of Android devices are still pre-Kitkat](https://developer.android.com/about/dashboards/index.html). Some Samsung/HTC Android 4.3 devices have [a broken implementation of IndexedDB](https://github.com/pouchdb/pouchdb/issues/1207) based on an older version of the spec. PouchDB detects this and falls back to WebSQL.
 
 Additionally, many pre-4.4 devices don't support Blobs correctly - either they're using vendor prefixes like `window.webkitURL` or they use the deprecated `BlobBuilder` API. `blob-util` works around all these issues.
 
