@@ -48,7 +48,7 @@ Android
 
 Android didn't support IndexedDB until 4.4 Kitkat, and as of this writing, [more than half of all Android devices are still pre-Kitkat](https://developer.android.com/about/dashboards/index.html). Some Samsung/HTC Android 4.3 devices have [a broken implementation of IndexedDB](https://github.com/pouchdb/pouchdb/issues/1207) based on an older version of the spec. PouchDB detects this and falls back to WebSQL.
 
-Additionally, many pre-4.4 devices don't support Blobs correctly - either they're using vendor prefixes like `window.webkitURL` or they use the deprecated `BlobBuilder` API. [blob-util](https://github.com/nolanlawson/blob-util) works around all these issues.
+Additionally, many pre-4.4 devices don't support Blobs correctly - either they're using vendor prefixes like `window.webkitURL` or they use the deprecated `BlobBuilder` API. [blob-util](https://github.com/nolanlawson/blob-util) works around these issues.
 
 4.4 Kitkat devices will either have Chrome 30 or Chrome 33, depending on whether it's 4.4.0-4.4.1 or 4.4.2+. Lollipop is auto-updating; it debuted with Chrome v37 and is up to v42 as of this writing.
 
@@ -68,9 +68,9 @@ Neither one supports WebSQL, but they're actually both great about storing Blobs
 
 That being said, these two have bugs related to the Blob/FileReader APIs themselves:
 
-**IE** doesn't have `FileReader.prototype.readAsBinaryString` (only `readAsArrayBuffer`), so if you want to convert a Blob to a binary string or a base64 string most efficiently, you want to use `readAsBinaryString` everywhere but IE.
+**IE** doesn't have `FileReader.prototype.readAsBinaryString` (only `readAsArrayBuffer`), so if you want to convert a Blob to a binary string or a base64 string most efficiently, you want to use `readAsBinaryString` everywhere but IE. PouchDB and blob-util both do this all under the hood.
 
-**Firefox**, conversely, doesn't have the `canvas.toBlob()` method, so if you want to convert a `canvas` to a Blob, you need to use `canvas.toDataURL()` and convert the dataURL to a Blob instead. PouchDB and blob-util both do this all under the hood.
+**Firefox**, conversely, doesn't have the `canvas.toBlob()` method, so if you want to convert a `canvas` to a Blob, you need to use `canvas.toDataURL()` and convert the dataURL to a Blob instead. blob-util does this all under the hood.
 
 More resources
 ---
