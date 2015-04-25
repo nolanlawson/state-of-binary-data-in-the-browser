@@ -4,20 +4,22 @@ The state of binary data in the browser
 Or "so you wanna store a Blob, huh?"
 -----
 
-**TLDR**: I know it's 2015, and IndexedDB should be universally supported already. But don't try to store Blobs in IndexedDB, unless you want to cry. Browsers suck at supporting it.
+**TLDR**: Don't try to store Blobs in IndexedDB, unless you want to cry. Browsers still suck at supporting it. [blob-util](https://github.com/nolanlawson/blob-util) and [PouchDB](https://github.com/pouchdb/pouchdb) will work around all the bugs.
 
-[blob-util](https://github.com/nolanlawson/blob-util) and [PouchDB](https://github.com/pouchdb/pouchdb) work around all the bugs; [LocalForage](https://github.com/mozilla/localForage) is pretty good too.
+**Long version:**
 
-Browser have three ways of storing data: LocalStorage, WebSQL, and IndexedDB. They all suck for different reasons, which is why there are so many database wrappers out there (PouchDB, YDN-DB, LocalForage, Lawnchair, MakeDrive, etc.).
+I know it's 2015, and Blobs/IndexedDB should be universally supported already. But sadly they're not, so here's the sorry state of things.
 
-Browsers don't consistently store Blobs either. The [caniuse.com page for Blobs](http://caniuse.com/#search=blob) is a bit disingenuous; really IE and Firefox should be yellowy-green as well, because they don't consistently support the various `canvas` and `FileReader` methods. Blobs in Chrome also have severe bugs up to v43.
+Browser have three ways of storing data: [LocalStorage](http://caniuse.com/#feat=namevalue-storage), [WebSQL](http://caniuse.com/#feat=sql-storage), and [IndexedDB](http://caniuse.com/#feat=indexeddb). They all suck for different reasons, which is why there are so many abstraction layers out there: PouchDB, YDN-DB, LocalForage, Lawnchair, MakeDrive, etc.
+
+Browsers don't consistently handle Blobs either. The [caniuse.com page for Blobs](http://caniuse.com/#search=blob) is a bit disingenuous; really IE and Firefox should be yellowy-green, because they don't consistently support the `canvas` and `FileReader` methods. Blobs in Chrome also have severe bugs before v43.
 
 LocalStorage
 ----
 
-Supported by [most browsers](http://caniuse.com/#feat=namevalue-storage) (but not Chrome extensions/apps or web workers/service workers).
+Supported by [most browsers](http://caniuse.com/#feat=namevalue-storage), althought not Chrome extensions, Chrome apps, web workers, or service workers.
 
-You can store Blobs in here as base64 strings, which is really inefficient. Plus, many LocalStorage implementations only let you store up to 5MB, so you hit the limit pretty fast.
+You can store Blobs in LocalStorage as base64 strings, which is really inefficient. Plus, many LocalStorage implementations only let you store up to 5MB, so you hit the limit pretty fast.
 
 WebSQL and IndexedDB have [higher limits](http://www.html5rocks.com/en/tutorials/offline/quota-research/), so let's see how browsers work with those two.
 
@@ -26,7 +28,7 @@ Chrome
 
 Supports both IndexedDB and WebSQL. Chrome originally got IndexedDB in v23.
 
-**WebSQL** doesn't support storing Blobs themselves, only strings. You can store binary strings directly, which is the most efficient, but then [the `'\u0000'` character causes data to get lost](https://code.google.com/p/chromium/issues/detail?id=422690). PouchDB works around this by elminitating the `'\u0000'` in a safe way.
+**WebSQL** doesn't support storing Blobs themselves, only strings. You can store binary strings directly, which is the most efficient, but then [the `'\u0000'` character causes data to get lost](https://code.google.com/p/chromium/issues/detail?id=422690). PouchDB works around this by eliminating the `'\u0000'` in [a safe and very efficient way](https://github.com/pouchdb/pouchdb/pull/2900).
 
 **IndexedDB** has many binary bugs in Chrome. Here's the history:
 
