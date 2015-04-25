@@ -4,7 +4,7 @@ The state of binary data in the browser
 Or: "So you wanna store a Blob, huh?"
 -----
 
-### TLDR
+### TL;DR
 
 Don't try to store Blobs directly in IndexedDB, unless you want to cry. Browsers still suck at it. 
 
