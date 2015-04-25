@@ -8,7 +8,7 @@ Or: "So you wanna store a Blob, huh?"
 
 Don't try to directly store Blobs in IndexedDB, unless you want to cry. Browsers still suck at it. 
 
-[PouchDB](https://github.com/pouchdb/pouchdb) and [blob-util](https://github.com/nolanlawson/blob-util) have workarounds to avoid all the browser bugs.
+[PouchDB](https://github.com/pouchdb/pouchdb) and [blob-util](https://github.com/nolanlawson/blob-util) have workarounds to avoid all the browser bugs. I'm not aware of any database library that stores Blobs as efficiently or across as many browsers as PouchDB (but feel free to let me know in the comments though :)).
 
 ### Long version
 
@@ -74,5 +74,3 @@ More resources
 A lot of this is documented in [the PouchDB FAQs](http://pouchdb.com/faq.html#data_types), [the PouchDB 3.0.6 release notes](http://pouchdb.com/2014/09/22/3.0.6.html), and ["10 things I learned from reading and writing the PouchDB source"](http://pouchdb.com/2014/10/26/10-things-i-learned-from-reading-and-writing-the-pouchdb-source.html).  More research on browser storage can be found [in this gist](https://gist.github.com/janl/d8efa4e404072037f7e0).
 
 I'm not aware of any database library that stores Blobs as efficiently or in as many browsers as PouchDB. You can even use [the localstorage adapter](http://pouchdb.com/adapters.html#pouchdb_in_the_browser) to store Blobs that way (in which case they will be inefficiently base64-encoded). And the proof is in the pudding: [the PouchDB test suite is insane](https://travis-ci.org/pouchdb/pouchdb/).
-
-If you think your libary does support Blobs as well as PouchDB, please let me know in the comments. :)
