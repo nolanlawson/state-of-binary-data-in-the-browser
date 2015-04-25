@@ -14,7 +14,7 @@ Don't try to store Blobs directly in IndexedDB, unless you want to cry. Browsers
 
 I know it's 2015, and Blobs/IndexedDB should be universally supported already. But sadly they're not, so here's the sorry state of things.
 
-Browsers have three ways of storing data: [LocalStorage](http://caniuse.com/#feat=namevalue-storage), [WebSQL](http://caniuse.com/#feat=sql-storage), and [IndexedDB](http://caniuse.com/#feat=indexeddb). They all suck for different reasons, which is why there are so many abstraction layers out there: PouchDB, YDN-DB, LocalForage, Lawnchair, MakeDrive, etc.
+Browsers have three ways of storing data: [LocalStorage](http://caniuse.com/#feat=namevalue-storage), [WebSQL](http://caniuse.com/#feat=sql-storage), and [IndexedDB](http://caniuse.com/#feat=indexeddb). They all suck for different reasons, which is why there are so many abstraction layers out there: PouchDB, LocalForage, Lawnchair, YDN-DB, MakeDrive, etc.
 
 Browsers don't consistently handle Blobs either. The [caniuse.com page for Blobs](http://caniuse.com/#search=blob) is a bit disingenuous; really IE and Firefox should be yellowy-green, because they don't consistently support all the `canvas` and `FileReader` methods. Blobs in Chrome also have severe bugs before v43.
 
@@ -27,7 +27,7 @@ Supported by [most browsers](http://caniuse.com/#feat=namevalue-storage), althou
 
 You can store Blobs in LocalStorage as base64 strings, which is really inefficient. Plus, many LocalStorage implementations only let you store up to 5MB, so you hit the limit pretty fast.
 
-WebSQL and IndexedDB have [higher limits](http://www.html5rocks.com/en/tutorials/offline/quota-research/), so let's see how browsers work with those two.
+WebSQL and IndexedDB have [much higher limits](http://www.html5rocks.com/en/tutorials/offline/quota-research/). So let's see how the different browsers work with those two.
 
 Chrome
 ----
@@ -66,9 +66,9 @@ Neither one support WebSQL, but they're actually both great about storing Blobs 
 
 That being said, these two have bugs related to the Blob/FileReader APIs themselves:
 
-IE doesn't have `FileReader.prototype.readAsBinaryString` (only `readAsArrayBuffer`), so if you want to convert a Blob to a binary string or a base64 string most efficiently, you want to use `readAsBinaryString` everywhere but IE.
+**IE** doesn't have `FileReader.prototype.readAsBinaryString` (only `readAsArrayBuffer`), so if you want to convert a Blob to a binary string or a base64 string most efficiently, you want to use `readAsBinaryString` everywhere but IE.
 
-Firefox, conversely, doesn't have the `canvas.toBlob` method, so if you want to convert a `canvas` to a Blob, you need to use `canvas.toDataURL` and convert the dataURL to a Blob instead. PouchDB and blob-util both do this all under the hood.
+**Firefox**, conversely, doesn't have the `canvas.toBlob()` method, so if you want to convert a `canvas` to a Blob, you need to use `canvas.toDataURL()` and convert the dataURL to a Blob instead. PouchDB and blob-util both do this all under the hood.
 
 More resources
 ---
