@@ -8,7 +8,7 @@ Or: "So you wanna store a Blob, huh?"
 
 Don't try to store Blobs directly in IndexedDB, unless you want to cry. Browsers still suck at it. 
 
-[PouchDB](https://github.com/pouchdb/pouchdb) and [blob-util](https://github.com/nolanlawson/blob-util) have workarounds to avoid all the browser bugs.
+[PouchDB](https://github.com/pouchdb/pouchdb) and [blob-util](https://github.com/nolanlawson/blob-util) have workarounds to avoid the browser bugs.
 
 ### Long version
 
