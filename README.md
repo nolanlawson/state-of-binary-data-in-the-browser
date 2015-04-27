@@ -70,9 +70,9 @@ That being said, these two have bugs related to the Blob/FileReader APIs themsel
 
 **IE** doesn't have `FileReader.prototype.readAsBinaryString` (only `readAsArrayBuffer`), so if you want to convert a Blob to a binary string or a base64 string most efficiently, you want to use `readAsBinaryString` everywhere but IE. PouchDB and blob-util both do this.
 
-**Firefox**, conversely, doesn't have the `canvas.toBlob()` method, so if you want to convert a `canvas` to a Blob, you need to use `canvas.toDataURL()` and convert the dataURL to a Blob instead. blob-util does this under the hood.
+~~**Firefox**, conversely, doesn't have the `canvas.toBlob()` method, so if you want to convert a `canvas` to a Blob, you need to use `canvas.toDataURL()` and convert the dataURL to a Blob instead. blob-util does this under the hood.~~
 
-**Edit:** My bad; it's actually Chrome and Safari that don't support `canvas.toBlob()`. So that leaves Firefox as the one browser with a spotless record!
+**Edit:** My bad; it's actually Chrome, Safari, and IE that don't support `canvas.toBlob()`. So that leaves Firefox as the one browser with a spotless record!
 
 More resources
 ---
