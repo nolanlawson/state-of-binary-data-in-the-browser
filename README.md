@@ -74,6 +74,8 @@ That being said, these two have bugs related to the Blob/FileReader APIs themsel
 
 **Edit:** My bad; it's actually Chrome, Safari, and IE that don't support `canvas.toBlob()`. So that leaves Firefox as the one browser with a spotless record!
 
+**Edit:** IE (from version 10 on) has a vendor-prefixed `canvas.msToBlob()` method (https://msdn.microsoft.com/library/hh771732%28v=vs.85%29.aspx) so it does support the `toBlob` method. 
+
 More resources
 ---
 
