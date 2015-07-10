@@ -18,6 +18,10 @@ Browsers have three ways of storing data: [LocalStorage](http://caniuse.com/#fea
 
 Browsers don't consistently handle Blobs either. The [caniuse.com page for Blobs](http://caniuse.com/#search=blob) is a bit disingenuous; really IE should be yellowy-green, because it doesn't consistently support all the `canvas` and `FileReader` methods. Blobs in Chrome also have severe bugs before v43.
 
+The *right* way we should all be storing our Blobs should be as files in the [Filesystem API][]: however, that spec is still in the *very* loosely-defined stages, without even the tracest hint of an implementation on the horizon from *any* browser. What we have right now are the three data stores described above, each of which were designed for storing *strings* representing *structured data*, rather than arbitrary blobs.
+
+[Filesystem API]: http://w3c.github.io/filesystem-api/
+
 So let's see all the different browsers and storage engines, and how they stack up:
 
 LocalStorage
